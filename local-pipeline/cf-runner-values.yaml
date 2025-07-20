@@ -1,0 +1,42 @@
+# -- Global parameters
+# @default -- See below
+global:
+  # -- User token in plain text (required if `global.codefreshTokenSecretKeyRef` is omitted!)
+  # Ref: https://g.codefresh.io/user/settings (see API Keys)
+  # Minimal API key scopes: Runner-Installation(read+write), Agent(read+write), Agents(read+write)
+  codefreshToken: "67c7424b21694b1a2b27b6c6.babd7ad35af76288ce0b5f6fd3146f4f"
+
+  # -- Account ID (required!)
+  # Can be obtained here https://g.codefresh.io/2.0/account-settings/account-information
+  accountId: "67249e212286afa51d20e83a"
+
+  # -- K8s context name (required!)
+  context: "colima"
+  # E.g.
+  # context: prod-ue1-runtime-1
+
+  # -- Agent Name (optional!)
+  # If omitted, the following format will be used '{{ .Values.global.context }}_{{ .Release.Namespace }}'
+  agentName: ""
+  # E.g.
+  # agentName: prod-ue1-runtime-1
+
+  # -- Runtime name (optional!)
+  # If omitted, the following format will be used '{{ .Values.global.context }}/{{ .Release.Namespace }}'
+  runtimeName: ""
+  # E.g.
+  # runtimeName: prod-ue1-runtime-1/namespace
+  #
+runner:
+  replicasCount: 2
+  init:
+    reousrces:
+      limits:
+        memory: 1024Mi
+        cpu: '2'
+runtime:
+  dind:
+    resources:
+      limits:
+        cpu: 800m
+        memory: 2048Mi

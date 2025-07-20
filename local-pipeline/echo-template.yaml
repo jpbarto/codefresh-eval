@@ -1,0 +1,18 @@
+version: '1.0'
+
+steps:
+  env_report:
+    description: Environment Report
+    image: ubuntu
+    commands:
+      - echo Printing environment...
+      - env
+      - echo Directory listing...
+      - ls
+
+  build:
+    image: ubuntu
+    description: Building
+    commands:
+      - echo Im building over here
+
